@@ -12,6 +12,7 @@ class App extends Component {
   state = {
     users: [],
     user: {},
+    repos: [],
     loading: false,
     alert: null
   }
@@ -32,6 +33,15 @@ class App extends Component {
     let data = await response.json();
 
     this.setState({ user: data, loading: false });
+  }
+
+  getRepos = async (username) => {
+    this.setState({ loading: true });
+
+    let response = await fetch(`https://api.github.com/users/${username}/repos`);
+    let data = await response.json();
+
+    this.setState({ repos: data, loading: false });
   }
 
   clearUsers = () => this.setState({ users: [], loading: false });
@@ -69,9 +79,11 @@ class App extends Component {
                 <Fragment>
                   <User
                     { ...props }
-                    getUser={ this.getUser }
-                    user={ this.state.user }
-                    loading= { loading }
+                    getUser = { this.getUser }
+                    user = { this.state.user }
+                    getRepos = { this.getRepos }
+                    repos = { this.state.repos }
+                    loading = { loading }
                   />
                 </Fragment>
               ) } />

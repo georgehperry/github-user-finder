@@ -111,9 +111,6 @@ ul {
   padding: 1rem;
   border: #ccc 1px dotted;
   margin: 0.7rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 /* List */
